@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration Form</title>
+    <style>
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Employee Registration Form</h2>
+    <form id="employeeForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <span class="error" id="nameError"></span>
+        <br>
+
+        <label for="email">Email ID:</label>
+        <input type="email" id="email" name="email">
+        <span class="error" id="emailError"></span>
+        <br>
+
+        <label for="mobile">Mobile No.:</label>
+        <input type="text" id="mobile" name="mobile">
+        <span class="error" id="mobileError"></span>
+        <br>
+
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department">
+        <span class="error" id="departmentError"></span>
+        <br>
+
+        <label for="joiningDate">Joining Date:</label>
+        <input type="date" id="joiningDate" name="joiningDate">
+        <span class="error" id="joiningDateError"></span>
+        <br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById("employeeForm").addEventListener("submit", function(event) {
+            let valid = true;
+
+            // Name validation (Only alphabets and spaces allowed)
+            let name = document.getElementById("name").value;
+            let namePattern = /^[A-Za-z ]+$/;
+            if (!namePattern.test(name)) {
+                document.getElementById("nameError").innerText = "Invalid name (only letters and spaces allowed)";
+                valid = false;
+            } else {
+                document.getElementById("nameError").innerText = "";
+            }
+
+            // Email validation
+            let email = document.getElementById("email").value;
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerText = "Invalid email format";
+                valid = false;
+            } else {
+                document.getElementById("emailError").innerText = "";
+            }
+
+            // Mobile number validation (10-digit number)
+            let mobile = document.getElementById("mobile").value;
+            let mobilePattern = /^[0-9]{10}$/;
+            if (!mobilePattern.test(mobile)) {
+                document.getElementById("mobileError").innerText = "Invalid mobile number (10 digits required)";
+                valid = false;
+            } else {
+                document.getElementById("mobileError").innerText = "";
+            }
+
+            // Department validation (Only alphabets and spaces allowed)
+            let department = document.getElementById("department").value;
+            let departmentPattern = /^[A-Za-z ]+$/;
+            if (!departmentPattern.test(department)) {
+                document.getElementById("departmentError").innerText = "Invalid department (only letters and spaces allowed)";
+                valid = false;
+            } else {
+                document.getElementById("departmentError").innerText = "";
+            }
+
+            // Joining Date validation (Should not be empty)
+            let joiningDate = document.getElementById("joiningDate").value;
+            if (joiningDate === "") {
+                document.getElementById("joiningDateError").innerText = "Please select a joining date";
+                valid = false;
+            } else {
+                document.getElementById("joiningDateError").innerText = "";
+            }
+
+            if (!valid) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        });
+    </script>
+</body>
+</html>

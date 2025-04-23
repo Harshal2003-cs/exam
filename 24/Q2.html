@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="validationApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username and Password Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module('validationApp', []);
+
+        app.controller('ValidationController', function($scope) {
+            $scope.validateUsername = function() {
+                if (!$scope.username) {
+                    alert('Enter username');
+                } else if ($scope.username.length < 3) {
+                    alert('Username is too short');
+                } else {
+                    alert('Valid username');
+                }
+            };
+
+            $scope.validatePassword = function() {
+                if (!$scope.password) {
+                    alert('Enter password');
+                } else if ($scope.password.length < 8) {
+                    alert('Password is too short');
+                } else {
+                    alert('Valid password');
+                }
+            };
+        });
+    </script>
+</head>
+<body ng-controller="ValidationController">
+
+<h2>Username and Password Validation</h2>
+
+<label for="username">Username:</label>
+<input type="text" id="username" name="username" ng-model="username" ng-blur="validateUsername()"><br><br>
+
+<label for="password">Password:</label>
+<input type="password" id="password" name="password" ng-model="password" ng-blur="validatePassword()"><br><br>
+
+</body>
+</html>

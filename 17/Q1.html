@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="syllabusApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M.Sc (CS) Sem-II Syllabus</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+  <script src="app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    nav {
+      margin-bottom: 20px;
+    }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #007BFF;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .content {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>M.Sc (CS) Sem-II Syllabus</h1>
+  <nav>
+    <a href="#/">Home</a>
+    <a href="templates/subject1.html">Subject 1</a>
+    <a href="templates/subject2.html">Subject 2</a>
+    <a href="templates/subject3.html">Subject 3</a>
+  </nav>
+
+  <!-- ng-view directive to load templates dynamically -->
+  <div ng-view class="content"></div>
+</body>
+</html>

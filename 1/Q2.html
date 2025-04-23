@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+         form{
+            text-align: center;
+        }
+    </style>
+    <script>
+      // JavaScript function to validate the form
+      function validateForm() 
+      {
+        // Get the values of the input fields
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var age = document.getElementById("age").value;
+
+        // Regular expression for validating names (only alphabets and spaces)
+        var namePattern = /^[A-Za-z]+$/;
+
+        // Validate first name
+        if (!firstName.match(namePattern)) {
+          alert("First name should only contain alphabets.");
+          return false;
+        }
+
+        // Validate last name
+        if (!lastName.match(namePattern)) {
+          alert("Last name should only contain alphabets.");
+          return false;
+        }
+
+        // Validate age
+        if (age < 18 || age > 50) {
+          alert("Age should be between 18 and 50.");
+          return false;
+          
+        }
+
+        // If all validations pass, the form will be submitted
+        else{
+            alert("Submit Your Form");
+        }
+        return true;
+      }
+    </script>
+  </head>
+  <body">
+    <h2>Student Registration Form</h2>
+
+    <form onsubmit="return validateForm()" id="form">
+      <label for="firstName"><b>First Name:</b></label><br>
+      <input type="text" id="firstName" name="firstName" /><br><br>
+
+      <label for="lastName"><b>Last Name:</b></label><br />
+      <input type="text" id="lastName" name="lastName" /><br><br>
+
+      <label for="age"><b>Age</b></label><br>
+      <input type="text" id="age" name="age" /><br><br>
+
+      <input type="submit" name="submit">
+    </form>
+  </body>
+</html>

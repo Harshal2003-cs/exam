@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <!-- Include AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <h2>Enter Student Details</h2>
+
+    <!-- Form to input student details -->
+    <form ng-submit="addStudent()">
+        <label for="id">Student ID:</label>
+        <input type="number" ng-model="newStudent.id">
+        <br>
+        
+        <label for="name">Name:</label>
+        <input type="text" ng-model="newStudent.name">
+        <br>
+        
+        <label for="age">Age:</label>
+        <input type="number" ng-model="newStudent.age">
+        <br>
+        
+        <button type="submit">Add Student</button>
+    </form>
+
+    <hr>
+
+    <h2>Student List</h2>
+
+    <!-- Table to display student data -->
+    <table border="10" cellpadding="10" cellspacing="10" style="color: blue; background-color: yellow; text-align: center;">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- ng-repeat will loop through each student and display them in a table row -->
+            <tr ng-repeat="student in students">
+                <td>{{ student.id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // Define AngularJS module and controller
+        var app = angular.module('myApp', []).controller('myCtrl', function($scope) {
+            // Initialize an empty array for student details
+            $scope.students = [];
+            
+            // Function to add a new student to the list
+            $scope.addStudent = function() {
+                if ($scope.newStudent) {
+                    $scope.students.push({
+                        id: $scope.newStudent.id,
+                        name: $scope.newStudent.name,
+                        age: $scope.newStudent.age,
+                        grade: $scope.newStudent.grade
+                    });
+                    $scope.newStudent = {};
+                }
+            };
+        });
+    </script>
+
+</body>
+</html>

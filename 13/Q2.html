@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 300px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        input { width: 100%; padding: 8px; margin: 5px 0; }
+        .error { color: red; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Registration</h2>
+        <form id="registrationForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName">
+            <span id="firstNameError" class="error"></span>
+            
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName">
+            <span id="lastNameError" class="error"></span>
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+            <span id="ageError" class="error"></span>
+            
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let firstName = document.getElementById("firstName").value;
+            let lastName = document.getElementById("lastName").value;
+            let age = document.getElementById("age").value;
+            let firstNameError = document.getElementById("firstNameError");
+            let lastNameError = document.getElementById("lastNameError");
+            let ageError = document.getElementById("ageError");
+            
+            firstNameError.textContent = "";
+            lastNameError.textContent = "";
+            ageError.textContent = "";
+            
+            let namePattern = /^[A-Za-z]+$/;
+            
+            if (!namePattern.test(firstName)) {
+                firstNameError.textContent = "First name should contain only alphabets";
+            }
+            
+            if (!namePattern.test(lastName)) {
+                lastNameError.textContent = "Last name should contain only alphabets";
+            }
+            
+            if (age < 18 || age > 50 || isNaN(age)) {
+                ageError.textContent = "Age must be between 18 and 50";
+            }
+            
+            if (namePattern.test(firstName) && namePattern.test(lastName) && age >= 18 && age <= 50) {
+                alert("Registration Successful");
+            }
+        });
+    </script>
+</body>
+</html>

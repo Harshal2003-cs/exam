@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="studentRegistrationApp">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration Form</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script>
+
+        angular.module('studentRegistrationApp', [])
+
+            .controller('RegistrationController', function($scope, $http) {
+
+                $scope.student = {};
+
+
+
+                $scope.submitForm = function() {
+
+                    $http.post('/submit', $scope.student)
+
+                        .then(function(response) {
+
+                            console.log(response.data);
+
+                        })
+
+                        .catch(function(error) {
+
+                            console.error('Error:', error);
+
+                        });
+
+                };
+
+
+
+                // Function to determine greeting message based on current time
+
+                $scope.getGreetingMessage = function() {
+
+                    var currentTime = new Date().getHours();
+
+                    if (currentTime < 12) {
+
+                        $scope.greetingMessage = "Good Morning";
+
+                    } else if (currentTime < 18) {
+
+                        $scope.greetingMessage = "Good Afternoon";
+
+                    } else {
+
+                        $scope.greetingMessage = "Good Evening";
+
+                    }
+
+                };
+
+
+
+                // Call the function on page load
+
+                $scope.getGreetingMessage();
+
+            });
+
+    </script>
+
+</head>
+
+<body ng-controller="RegistrationController">
+
+
+
+<h2>Student Registration Form</h2>
+
+
+
+<form ng-submit="submitForm()">
+
+    <label for="firstName">First Name:</label>
+
+    <input type="text" id="firstName" name="firstName" ng-model="student.firstName" required pattern="[A-Za-z]+"><br><br>
+
+    
+
+    <label for="lastName">Last Name:</label>
+
+    <input type="text" id="lastName" name="lastName" ng-model="student.lastName" required pattern="[A-Za-z]+"><br><br>
+
+    
+
+    <label for="age">Age:</label>
+
+    <input type="number" id="age" name="age" ng-model="student.age" required min="18" max="50"><br><br>
+
+    
+
+    <input type="submit" value="Register">
+
+</form>
+
+
+
+<!-- Display greeting message based on current time -->
+
+<div ng-show="greetingMessage">{{ greetingMessage }}, {{ student.firstName }}</div>
+
+
+
+</body>
+
+</html>

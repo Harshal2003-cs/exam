@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="studentApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body ng-controller="studentController">
+
+  <h1>Student Details</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="student in students">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.grade }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // AngularJS Module and Controller
+    angular.module('studentApp', [])
+      .controller('studentController', function ($scope) {
+        // Array of student objects
+        $scope.students = [
+          { id: 1, name: 'Alice Johnson', age: 20, grade: 'A' },
+          { id: 2, name: 'Bob Smith', age: 21, grade: 'B' },
+          { id: 3, name: 'Charlie Brown', age: 22, grade: 'C' },
+          { id: 4, name: 'David Wilson', age: 19, grade: 'A' },
+          { id: 5, name: 'Eva Green', age: 20, grade: 'B' },
+          { id: 6, name: 'Frank White', age: 21, grade: 'A' },
+          { id: 7, name: 'Grace Lee', age: 22, grade: 'C' },
+          { id: 8, name: 'Henry Davis', age: 19, grade: 'B' },
+          { id: 9, name: 'Ivy Moore', age: 20, grade: 'A' },
+          { id: 10, name: 'Jack Taylor', age: 21, grade: 'B' }
+        ];
+      });
+  </script>
+
+</body>
+</html>
